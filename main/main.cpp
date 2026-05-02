@@ -77,8 +77,10 @@ static uint32_t ntpUpdate(const char *server, int8_t tz, uint32_t timeout = 1000
           }
         }
       }
-      if (repeat)
-        delay(timeout / 2);
+      if (repeat) {
+        delay(timeout);
+        udp.clear();
+      }
     } while (repeat--);
   }
   return 0;
